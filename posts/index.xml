@@ -15,6 +15,18 @@ func add() func(int) int { var x int return func(y int) int { x += y return x } 
 &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;f(10): %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">f&lt;/span>(&lt;span style="color:#ae81ff">10&lt;/span>))
 &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;f(20): %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">f&lt;/span>(&lt;span style="color:#ae81ff">20&lt;/span>))
 }
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>GoLang Fibonacci</title><link>/posts/2/</link><pubDate>Thu, 05 Jan 2023 00:00:00 +0000</pubDate><guid>/posts/2/</guid><description>Recursion func fibonacci(num int) int{ if num&amp;lt;2{ return 1 } return fibonacci(num-1) + fibonacci(num-2) } func main() { for i := 0; i &amp;lt; 10; i++ { fmt.Printf(&amp;#34;fibonacci(%v): %v\n&amp;#34;, i ,fibonacci(i)) } }</description><content>&lt;h1 id="recursion">Recursion&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(&lt;span style="color:#a6e22e">num&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>) &lt;span style="color:#66d9ef">int&lt;/span>{
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">num&lt;/span>&amp;lt;&lt;span style="color:#ae81ff">2&lt;/span>{
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+}
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(&lt;span style="color:#a6e22e">num&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>) &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">fibonacci&lt;/span>(&lt;span style="color:#a6e22e">num&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>)
+}
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span> &amp;lt; &lt;span style="color:#ae81ff">10&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span> {
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;fibonacci(%v): %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">i&lt;/span> ,&lt;span style="color:#a6e22e">fibonacci&lt;/span>(&lt;span style="color:#a6e22e">i&lt;/span>))
+}
+}
 &lt;/code>&lt;/pre>&lt;/div></content></item><item><title>GoLang Basic</title><link>/posts/0/</link><pubDate>Wed, 04 Jan 2023 00:00:00 +0000</pubDate><guid>/posts/0/</guid><description>Slice create func main() { var s1 = []int{1,2,3} s1 = append(s1, 4,5,6) var s2 = []int{4,5,6} s2 = append(s2, s1...) } delete func main() { var s1 = []int{1,2,3,4,5} s1 = append(s1[:2],s1[3:]...) // a = append(a[:index],a[index+1:]...) }</description><content>&lt;h1 id="slice">Slice&lt;/h1>
 &lt;h2 id="create">create&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
