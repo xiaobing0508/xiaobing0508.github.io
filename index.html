@@ -57,6 +57,24 @@ Terminal
 <div class=posts>
 <article class="post on-list">
 <h1 class=post-title>
+<a href=/posts/1/>GoLang Closure</a>
+</h1>
+<div class=post-meta>
+<time class=post-date>
+2023-01-05 ::
+</time>
+<span class=post-author>Yang Bing</span>
+</div>
+<div class=post-content>
+闭包可以理解成定义在一个函数内部的函数。在本质上，闭包是将函数内部和函数外部连接起来的桥梁，或者说是函数和其引用环境的组合体。
+func add() func(int) int { var x int return func(y int) int { x += y return x } } func main() { // 此时f就是一个闭包，在f的生命周期内，变量x也一直有效。 f := add() fmt.Printf("f(10): %v\n", f(10)) fmt.Printf("f(20): %v\n", f(20)) }
+</div>
+<div>
+<a class="read-more button" href=/posts/1/>Read more →</a>
+</div>
+</article>
+<article class="post on-list">
+<h1 class=post-title>
 <a href=/posts/0/>GoLang Basic</a>
 </h1>
 <div class=post-meta>

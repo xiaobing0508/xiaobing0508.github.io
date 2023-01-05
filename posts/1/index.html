@@ -1,0 +1,115 @@
+<!doctype html><html lang=en>
+<head>
+<title>GoLang Closure :: Terminal</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content=" 闭包可以理解成定义在一个函数内部的函数。在本质上，闭包是将函数内部和函数外部连接起来的桥梁，或者说是函数和其引用环境的组合体。
+ func add() func(int) int { var x int return func(y int) int { x += y return x } } func main() { // 此时f就是一个闭包，在f的生命周期内，变量x也一直有效。  f := add() fmt.Printf(&amp;#34;f(10): %v\n&amp;#34;, f(10)) fmt.Printf(&amp;#34;f(20): %v\n&amp;#34;, f(20)) } ">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=/posts/1/>
+<link rel=stylesheet href=/styles.css>
+<link rel="shortcut icon" href=/img/theme-colors/orange.png>
+<link rel=apple-touch-icon href=/img/theme-colors/orange.png>
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content>
+<meta name=twitter:creator content="Yang Bing">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GoLang Closure">
+<meta property="og:description" content=" 闭包可以理解成定义在一个函数内部的函数。在本质上，闭包是将函数内部和函数外部连接起来的桥梁，或者说是函数和其引用环境的组合体。
+ func add() func(int) int { var x int return func(y int) int { x += y return x } } func main() { // 此时f就是一个闭包，在f的生命周期内，变量x也一直有效。  f := add() fmt.Printf(&amp;#34;f(10): %v\n&amp;#34;, f(10)) fmt.Printf(&amp;#34;f(20): %v\n&amp;#34;, f(20)) } ">
+<meta property="og:url" content="/posts/1/">
+<meta property="og:site_name" content="Terminal">
+<meta property="og:image" content="/img/favicon/orange.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="article:published_time" content="2023-01-05 00:00:00 +0000 UTC">
+</head>
+<body class=orange>
+<div class="container headings--one-size">
+<header class=header>
+<div class=header__inner>
+<div class=header__logo>
+<a href=/>
+<div class=logo>
+Terminal
+</div>
+</a>
+</div>
+<ul class="menu menu--mobile">
+<li class=menu__trigger>Menu&nbsp;▾</li>
+<li>
+<ul class=menu__dropdown>
+<li><a href=/about>About</a></li>
+<li><a href=/showcase>Showcase</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<nav class=navigation-menu>
+<ul class="navigation-menu__inner menu--desktop">
+<li><a href=/about>About</a></li>
+<li><a href=/showcase>Showcase</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<article class=post>
+<h1 class=post-title>
+<a href=/posts/1/>GoLang Closure</a>
+</h1>
+<div class=post-meta>
+<time class=post-date>
+2023-01-05 ::
+</time>
+<span class=post-author>Yang Bing</span>
+</div>
+<div class=post-content><div>
+<blockquote>
+<p>闭包可以理解成定义在一个函数内部的函数。在本质上，闭包是将函数内部和函数外部连接起来的桥梁，或者说是函数和其引用环境的组合体。</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>add</span>() <span style=color:#66d9ef>func</span>(<span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#66d9ef>int</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>y</span> <span style=color:#66d9ef>int</span>) <span style=color:#66d9ef>int</span> {
+        <span style=color:#a6e22e>x</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>y</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>x</span>
+    }
+}
+
+<span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#75715e>// 此时f就是一个闭包，在f的生命周期内，变量x也一直有效。
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>f</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>add</span>()
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;f(10): %v\n&#34;</span>, <span style=color:#a6e22e>f</span>(<span style=color:#ae81ff>10</span>))
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;f(20): %v\n&#34;</span>, <span style=color:#a6e22e>f</span>(<span style=color:#ae81ff>20</span>))
+}
+</code></pre></div>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=/posts/0/>
+<span class=button__text>GoLang Basic</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</article>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2023 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+</footer>
+<script type=text/javascript src=/bundle.min.js></script>
+</div>
+</body>
+</html>
