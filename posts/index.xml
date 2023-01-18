@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>GoLang 并发编程</title><link>/posts/3/</link><pubDate>Wed, 18 Jan 2023 00:00:00 +0000</pubDate><guid>/posts/3/</guid><description>Channel var values = make(chan int) func send() { f := rand.Intn(100) fmt.Printf(&amp;#34;send: %v\n&amp;#34;,f) time.Sleep(time.Second * 5) values &amp;lt;- f } func main() { defer close(values) go send() f := &amp;lt;-values fmt.Printf(&amp;#34;receive: %v\n&amp;#34;,f) } WaitGroup var wp sync.WaitGroup func showMsg(i int) { defer wp.Done() fmt.Printf(&amp;#34;i: %v\n&amp;#34;, i) } func main() { for i := 0; i &amp;lt; 10; i++ { go showMsg(i) wp.Add(1) } wp.Wait() } Runtime Goshed func show() { for i := 0; i &amp;lt; 2; i++ { fmt.</description><content>&lt;h1 id="channel">Channel&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Terminal</title><link>/posts/</link><description>Recent content in Posts on Terminal</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>GoLang 并发编程</title><link>/posts/3/</link><pubDate>Wed, 18 Jan 2023 00:00:00 +0000</pubDate><guid>/posts/3/</guid><description>Channel var values = make(chan int) func send() { f := rand.Intn(100) fmt.Printf(&amp;#34;send: %v\n&amp;#34;,f) time.Sleep(time.Second * 5) values &amp;lt;- f } func main() { defer close(values) go send() f := &amp;lt;-values fmt.Printf(&amp;#34;receive: %v\n&amp;#34;,f) } // channel iterate var chanint = make(chan int) func main() { go func () { for i := 0; i &amp;lt; 10; i++ { chanint &amp;lt;- i } close(chanint) }() for v := range chanint { fmt.</description><content>&lt;h1 id="channel">Channel&lt;/h1>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">values&lt;/span> = make(&lt;span style="color:#66d9ef">chan&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>)
 &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">send&lt;/span>() {
 &lt;span style="color:#a6e22e">f&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">rand&lt;/span>.&lt;span style="color:#a6e22e">Intn&lt;/span>(&lt;span style="color:#ae81ff">100&lt;/span>)
@@ -11,6 +11,19 @@
 &lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">send&lt;/span>()
 &lt;span style="color:#a6e22e">f&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span>&lt;span style="color:#a6e22e">values&lt;/span>
 &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;receive: %v\n&amp;#34;&lt;/span>,&lt;span style="color:#a6e22e">f&lt;/span>)
+}
+&lt;span style="color:#75715e">// channel iterate
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span> = make(&lt;span style="color:#66d9ef">chan&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>)
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#66d9ef">func&lt;/span> () {
+&lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span> &amp;lt; &lt;span style="color:#ae81ff">10&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span> {
+&lt;span style="color:#a6e22e">chanint&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span>
+}
+close(&lt;span style="color:#a6e22e">chanint&lt;/span>)
+}()
+&lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span> {
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;v: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">v&lt;/span>)
+}
 }
 &lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="waitgroup">WaitGroup&lt;/h1>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">wp&lt;/span> &lt;span style="color:#a6e22e">sync&lt;/span>.&lt;span style="color:#a6e22e">WaitGroup&lt;/span>
@@ -67,6 +80,71 @@
 &lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">a&lt;/span>()
 &lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>()
 &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Sleep&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>)
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="mutex">Mutex&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">num&lt;/span> = &lt;span style="color:#ae81ff">100&lt;/span>
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">wg&lt;/span> &lt;span style="color:#a6e22e">sync&lt;/span>.&lt;span style="color:#a6e22e">WaitGroup&lt;/span>
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">lock&lt;/span> &lt;span style="color:#a6e22e">sync&lt;/span>.&lt;span style="color:#a6e22e">Mutex&lt;/span>
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>() {
+&lt;span style="color:#66d9ef">defer&lt;/span> &lt;span style="color:#a6e22e">wg&lt;/span>.&lt;span style="color:#a6e22e">Done&lt;/span>()
+&lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Lock&lt;/span>()
+&lt;span style="color:#a6e22e">num&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;add: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">num&lt;/span>)
+&lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Unlock&lt;/span>()
+}
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">sub&lt;/span>() {
+&lt;span style="color:#66d9ef">defer&lt;/span> &lt;span style="color:#a6e22e">wg&lt;/span>.&lt;span style="color:#a6e22e">Done&lt;/span>()
+&lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Lock&lt;/span>()
+&lt;span style="color:#a6e22e">num&lt;/span> &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;sub: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">num&lt;/span>)
+&lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Unlock&lt;/span>()
+}
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span> &amp;lt; &lt;span style="color:#ae81ff">100&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span> {
+&lt;span style="color:#a6e22e">wg&lt;/span>.&lt;span style="color:#a6e22e">Add&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>()
+&lt;span style="color:#a6e22e">wg&lt;/span>.&lt;span style="color:#a6e22e">Add&lt;/span>(&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">sub&lt;/span>()
+}
+&lt;span style="color:#a6e22e">wg&lt;/span>.&lt;span style="color:#a6e22e">Wait&lt;/span>()
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;num: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">num&lt;/span>)
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="select">Select&lt;/h1>
+&lt;ul>
+&lt;li>用于处理异步IO操作，执行channel中读写操作，非阻塞状态会触发&lt;/li>
+&lt;li>多个case可以执行，会随机选一个&lt;/li>
+&lt;li>没有可运行的case，会执行defaul动作&lt;/li>
+&lt;li>没有可运行的case和defaul语句，将阻塞&lt;/li>
+&lt;/ul>
+&lt;h1 id="ticker">Ticker&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span> = make(&lt;span style="color:#66d9ef">chan&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>)
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">time1&lt;/span> = &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">NewTicker&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span>)
+&lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#66d9ef">func&lt;/span> () {
+&lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">_&lt;/span> = &lt;span style="color:#66d9ef">range&lt;/span> &lt;span style="color:#a6e22e">time1&lt;/span>.&lt;span style="color:#a6e22e">C&lt;/span> {
+&lt;span style="color:#66d9ef">select&lt;/span> {
+&lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>:
+&lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>:
+&lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>:
+}
+}
+}()
+&lt;span style="color:#a6e22e">sum&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
+&lt;span style="color:#66d9ef">for&lt;/span> {
+&lt;span style="color:#a6e22e">date&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#a6e22e">chanint&lt;/span>
+&lt;span style="color:#a6e22e">sum&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#a6e22e">date&lt;/span>
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;date: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">date&lt;/span>)
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">sum&lt;/span> &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">50&lt;/span> {
+&lt;span style="color:#66d9ef">break&lt;/span>
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="timer">Timer&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">time1&lt;/span> = &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">NewTimer&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>)
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;time.Now(): %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Now&lt;/span>())
+&lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#a6e22e">time1&lt;/span>.&lt;span style="color:#a6e22e">C&lt;/span>
+&lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;time.Now(): %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Now&lt;/span>())
 }
 &lt;/code>&lt;/pre>&lt;/div></content></item><item><title>GoLang Closure</title><link>/posts/1/</link><pubDate>Thu, 05 Jan 2023 00:00:00 +0000</pubDate><guid>/posts/1/</guid><description> 闭包可以理解成定义在一个函数内部的函数。在本质上，闭包是将函数内部和函数外部连接起来的桥梁，或者说是函数和其引用环境的组合体。
 func add() func(int) int { var x int return func(y int) int { x += y return x } } func main() { // 此时f就是一个闭包，在f的生命周期内，变量x也一直有效。 f := add() fmt.Printf(&amp;#34;f(10): %v\n&amp;#34;, f(10)) fmt.Printf(&amp;#34;f(20): %v\n&amp;#34;, f(20)) }</description><content>&lt;blockquote>
