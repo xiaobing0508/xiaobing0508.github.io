@@ -81,17 +81,19 @@ close(&lt;span style="color:#a6e22e">chanint&lt;/span>)
 &lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">b&lt;/span>()
 &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Sleep&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Second&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>)
 }
-&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="mutex">Mutex&lt;/h1>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="mutex--atomic">Mutex &amp;amp;&amp;amp; Atomic&lt;/h1>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">num&lt;/span> = &lt;span style="color:#ae81ff">100&lt;/span>
 &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">lock&lt;/span> &lt;span style="color:#a6e22e">sync&lt;/span>.&lt;span style="color:#a6e22e">Mutex&lt;/span>
 &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>() {
-&lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Lock&lt;/span>()
+&lt;span style="color:#75715e">// atomic.AddInt64(&amp;amp;i,1)
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Lock&lt;/span>()
 &lt;span style="color:#a6e22e">num&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;add: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">num&lt;/span>)
 &lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Unlock&lt;/span>()
 }
 &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">sub&lt;/span>() {
-&lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Lock&lt;/span>()
+&lt;span style="color:#75715e">// atomic.AddInt64(&amp;amp;i,-1)
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Lock&lt;/span>()
 &lt;span style="color:#a6e22e">num&lt;/span> &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
 &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;sub: %v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">num&lt;/span>)
 &lt;span style="color:#a6e22e">lock&lt;/span>.&lt;span style="color:#a6e22e">Unlock&lt;/span>()
