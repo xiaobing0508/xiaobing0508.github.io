@@ -149,17 +149,14 @@ Terminal
 }
 </code></pre></div><h1 id=mutex>Mutex<a href=#mutex class=hanchor arialabel=Anchor>&#8983;</a> </h1>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-golang data-lang=golang><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>num</span> = <span style=color:#ae81ff>100</span>
-<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>wg</span> <span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>WaitGroup</span>
 <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>lock</span> <span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>Mutex</span>
 <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>add</span>() {
-	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Done</span>()
 	<span style=color:#a6e22e>lock</span>.<span style=color:#a6e22e>Lock</span>()
 	<span style=color:#a6e22e>num</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
 	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;add: %v\n&#34;</span>, <span style=color:#a6e22e>num</span>)
 	<span style=color:#a6e22e>lock</span>.<span style=color:#a6e22e>Unlock</span>()
 }
 <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>sub</span>() {
-	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Done</span>()
 	<span style=color:#a6e22e>lock</span>.<span style=color:#a6e22e>Lock</span>()
 	<span style=color:#a6e22e>num</span> <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
 	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;sub: %v\n&#34;</span>, <span style=color:#a6e22e>num</span>)
@@ -167,12 +164,10 @@ Terminal
 }
 <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
 	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>:=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> &lt; <span style=color:#ae81ff>100</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span> {
-		<span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#ae81ff>1</span>)
 		<span style=color:#66d9ef>go</span> <span style=color:#a6e22e>add</span>()
-		<span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Add</span>(<span style=color:#ae81ff>1</span>)
 		<span style=color:#66d9ef>go</span> <span style=color:#a6e22e>sub</span>()
 	}
-	<span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Wait</span>()
+	<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Sleep</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span><span style=color:#f92672>*</span><span style=color:#ae81ff>2</span>)
 	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;num: %v\n&#34;</span>, <span style=color:#a6e22e>num</span>)
 }
 </code></pre></div><h1 id=select>Select<a href=#select class=hanchor arialabel=Anchor>&#8983;</a> </h1>
